@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaivourIdle : MonoBehaviour, IEnemyBehaivour
+public class BehaivourIdle : IEnemyBehaivour
 {
     public void Enter()
     {
         Debug.Log("Idle Enter");
+
     }
 
     public void Exit()

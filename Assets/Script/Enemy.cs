@@ -17,13 +17,22 @@ public class Enemy : MonoBehaviour
         _controller = GetComponent<EmemyController>();
     }
 
-    void Update()
+    private void Update()
     {
         float isTraget = Vector3.Distance(transform.position, _target.position);
         if ((isTraget <= _distanceBetweenObject) || IsWiew())
         {
-            if(_controller.GetBehaivourType() != typeof(BehaivorAggresive))
+            if (_controller.GetBehaivourType() != typeof(BehaivorAggresive))
+            {
                 _controller.SetAggresiveBehaivour();
+            }
+        }
+        else
+        {
+            if(_controller.GetBehaivourType() != typeof(BehaivourIdle))
+            {
+                _controller.SetIdleBehaivour();
+            }
         }
     }
 

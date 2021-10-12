@@ -2,18 +2,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
-public class BehaivorAggresive : MonoBehaviour, IEnemyBehaivour
+public class BehaivorAggresive : IEnemyBehaivour
 {
-    [SerializeField] private Transform _target;
-
+    private Transform _target;
     private float _interest;
     private NavMeshAgent _agent;
     private Coroutine _currentInterest;
+    private MonoBehaviour _monoBehaviour;
 
-    private void Start()
+   public BehaivorAggresive(Transform target, NavMeshAgent agent,MonoBehaviour monoBehaviour)
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _target = target;
+        _agent = agent;
+        _monoBehaviour = monoBehaviour;
     }
+
     public void Enter()
     {
         StartGrow(1);
@@ -26,12 +29,13 @@ public class BehaivorAggresive : MonoBehaviour, IEnemyBehaivour
 
     public void Update()
     {
-        if ( _interest== 1)
+       if ( _interest== 1)
         {
             RotateToTarget();
             GoToTarget();
         }
         Debug.Log("UpdateAGRR");
+        Debug.Log(_interest);
     }
 
     private void RotateToTarget()
@@ -51,13 +55,13 @@ public class BehaivorAggresive : MonoBehaviour, IEnemyBehaivour
     {
         _agent.SetDestination(_target.position);
     }
-
+    
     private void StartGrow(float side)
     {
         if (_currentInterest != null)
-            StopCoroutine(_currentInterest);
+            _monoBehaviour.StopCoroutine(_currentInterest);
 
-        _currentInterest = StartCoroutine(GrowInterest(side));
+        _currentInterest = _monoBehaviour.StartCoroutine(GrowInterest(side));
     }
 
     private IEnumerator GrowInterest(float value)
@@ -66,8 +70,9 @@ public class BehaivorAggresive : MonoBehaviour, IEnemyBehaivour
 
         while(_interest != value)
         {
-            _interest = Mathf.MoveTowards(_interest, value, 0.1f);
+            _interest = Mathf.MoveTowards(_interest, value, 0.001f);
             yield return time;
         }
     }
+    
 }

@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EmemyController : MonoBehaviour
 {
+    [SerializeField] private Transform _target;
+    [SerializeField] private NavMeshAgent _agent;
+
     private Dictionary<Type,IEnemyBehaivour> _enemyBehaivors;
     private IEnemyBehaivour _currentBehaivor;
 
@@ -15,7 +19,7 @@ public class EmemyController : MonoBehaviour
 
     private void Update()
     {
-        if(_currentBehaivor != null)
+        if (_currentBehaivor != null)
         {
             _currentBehaivor.Update();
         }
@@ -30,7 +34,7 @@ public class EmemyController : MonoBehaviour
     {
         _enemyBehaivors = new Dictionary<Type, IEnemyBehaivour>
         {
-            [typeof(BehaivorAggresive)] = new BehaivorAggresive(),
+            [typeof(BehaivorAggresive)] = new BehaivorAggresive(_target,_agent,this),
             [typeof(BehaivourIdle)] = new BehaivourIdle()
         };
     }
