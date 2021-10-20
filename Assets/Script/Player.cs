@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int _speed = 5;
+   [SerializeField] private int _speed = 5;
+
+    private float _health = 100;
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
@@ -13,5 +15,10 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * _speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.S))
             transform.Translate(Vector3.back * _speed * Time.deltaTime);
+    }
+
+    public void GetDamage(float damage)
+    {
+        _health -= damage;
     }
 }

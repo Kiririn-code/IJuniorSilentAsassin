@@ -24,7 +24,7 @@ public class BehaivorAggresive : IEnemyBehaivour
 
     public void Exit()
     {
-        StartGrow(0);
+        _interest = 0;
     }
 
     public void Update()
@@ -34,9 +34,9 @@ public class BehaivorAggresive : IEnemyBehaivour
             RotateToTarget();
             GoToTarget();
         }
-        Debug.Log("UpdateAGRR");
         Debug.Log(_interest);
     }
+
 
     private void RotateToTarget()
     {
@@ -70,7 +70,7 @@ public class BehaivorAggresive : IEnemyBehaivour
 
         while(_interest != value)
         {
-            _interest = Mathf.MoveTowards(_interest, value, 0.001f);
+            _interest = Mathf.MoveTowards(_interest, value, 0.004f);
             yield return time;
         }
     }

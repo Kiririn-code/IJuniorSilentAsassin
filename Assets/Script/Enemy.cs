@@ -8,9 +8,20 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Transform _target;
 
+    private float _damage = 10;
+
     private float _distanceBetweenObject = 2f;
     private float _viewDistance = 10f;
     private float _angle = 50f;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<Player>(out Player player))
+        {
+            DoAttack(player);
+            Debug.Log("Hit");
+        }
+    }
 
     private void Start()
     {
@@ -49,5 +60,20 @@ public class Enemy : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void DoAttack(Player player)
+    {
+        float attackCooldown =0;
+
+        if(attackCooldown <=3)
+        {
+            attackCooldown += Time.deltaTime;
+        }
+        else
+        {
+            player.GetDamage(_damage);
+            attackCooldown = 0;
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EmemyController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EmemyController : MonoBehaviour
 
     private Dictionary<Type,IEnemyBehaivour> _enemyBehaivors;
     private IEnemyBehaivour _currentBehaivor;
+
+    public event UnityAction BehaivourChanged;
 
     private void Awake()
     {
@@ -20,9 +23,7 @@ public class EmemyController : MonoBehaviour
     private void Update()
     {
         if (_currentBehaivor != null)
-        {
-            _currentBehaivor.Update();
-        }
+                _currentBehaivor.Update();
     }
 
     private void SetBehaivourByDefault()
@@ -61,9 +62,11 @@ public class EmemyController : MonoBehaviour
 
     public void SetIdleBehaivour()
     {
+        BehaivourChanged?.Invoke();
         var behaivour = GetBehaivour<BehaivourIdle>();
         SetBehaivour(behaivour);
     }
 
     public Type GetBehaivourType() => _currentBehaivor.GetType();
+    public float GetMagnitude() => _agent.velocity.magnitude;
 }
