@@ -10,9 +10,9 @@ public class Enemy : MonoBehaviour
 
     private float _damage = 10;
 
-    private float _distanceBetweenObject = 2f;
+    private float _distanceBetweenObject = 1f;
     private float _viewDistance = 10f;
-    private float _angle = 50f;
+    private float _angle = 90f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        float isTraget = Vector3.Distance(transform.position, _target.position);
+        float isTraget = Vector3.Distance(base.transform.position, _target.position);
         if ((isTraget <= _distanceBetweenObject) || IsWiew())
         {
             if (_controller.GetBehaivourType() != typeof(BehaivorAggresive))

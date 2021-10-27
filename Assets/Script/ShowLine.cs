@@ -12,5 +12,6 @@ public class ShowLine : MonoBehaviour
         Vector3 right = transform.position + Quaternion.Euler(-new Vector3(0, _viewAngle / 2f, 0)) * (transform.forward * _viewDistance);
         Debug.DrawLine(transform.position, left, Color.yellow);
         Debug.DrawLine(transform.position, right, Color.yellow);
+        
     }
 }

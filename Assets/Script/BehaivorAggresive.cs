@@ -20,11 +20,13 @@ public class BehaivorAggresive : IEnemyBehaivour
     public void Enter()
     {
         StartGrow(1);
+        _agent.ResetPath();
     }
 
+    [System.Obsolete]
     public void Exit()
     {
-        _interest = 0;
+        _agent.Stop();
     }
 
     public void Update()
@@ -32,11 +34,9 @@ public class BehaivorAggresive : IEnemyBehaivour
        if ( _interest== 1)
         {
             RotateToTarget();
-            GoToTarget();
+            _agent.SetDestination(_target.position);
         }
-        Debug.Log(_interest);
     }
-
 
     private void RotateToTarget()
     {
@@ -48,12 +48,8 @@ public class BehaivorAggresive : IEnemyBehaivour
             (
                 _agent.transform.rotation,
                 Quaternion.LookRotation(lookVector, Vector3.up),
-                5 * Time.deltaTime
+                100 * Time.deltaTime
             );
-    }
-    private void GoToTarget()
-    {
-        _agent.SetDestination(_target.position);
     }
     
     private void StartGrow(float side)
