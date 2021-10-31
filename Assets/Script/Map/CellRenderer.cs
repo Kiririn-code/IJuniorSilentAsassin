@@ -5,7 +5,7 @@ public class CellRenderer : MonoBehaviour
 {
     [SerializeField] private GameObject _cellPrafab;
 
-    void Start()
+    void Awake()
     {
         CellGenerator generator = new CellGenerator();
 
@@ -21,13 +21,10 @@ public class CellRenderer : MonoBehaviour
                 cell.LeftWall.SetActive(mazeMap[x, y].IsLeftWallWisible);
             }
         }
-
-        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
-    private void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-            GetComponent<NavMeshSurface>().BuildNavMesh();
+        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 }
