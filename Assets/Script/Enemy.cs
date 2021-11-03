@@ -1,12 +1,12 @@
 using UnityEngine;
-[RequireComponent(typeof(EmemyController))]
+[RequireComponent(typeof(EnemyController))]
 
 public class Enemy : MonoBehaviour
 {
     [Range(0,90)] [SerializeField] private float _angle = 90f;
     [Range(0,10)] [SerializeField] private float _viewDistance = 10f;
 
-    private EmemyController _controller;
+    private EnemyController _controller;
     private Transform _target;
 
     private float _damage = 10;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _controller = GetComponent<EmemyController>();
+        _controller = GetComponent<EnemyController>();
         _target = _controller.GetTarget();
     }
 

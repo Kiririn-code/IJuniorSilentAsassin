@@ -69,14 +69,14 @@
     <Compile Include="Assets\Script\NavMeshSurvace.cs" />
     <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Togglescript.cs" />
     <Compile Include="Assets\Script\ShowLine.cs" />
+    <Compile Include="Assets\Script\EnemyGenerator.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Map\Cell.cs" />
     <Compile Include="Assets\Script\Ui\MainMenu.cs" />
-    <Compile Include="Assets\Script\EmemyController.cs" />
+    <Compile Include="Assets\Script\EnemyController.cs" />
     <Compile Include="Assets\Script\Animation\AnimationBehaivour.cs" />
     <Compile Include="Assets\Script\Map\CellGenerator.cs" />
     <Compile Include="Assets\Script\Game.cs" />
-    <Compile Include="Assets\Script\EnemyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro.cginc" />

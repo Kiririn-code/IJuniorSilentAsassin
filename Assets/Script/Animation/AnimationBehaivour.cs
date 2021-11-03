@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class AnimationBehaivour : StateMachineBehaviour
 {
-    private EmemyController _enemy;
+    private EnemyController _enemy;
     private Animator _animator;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(_enemy == null)
-            _enemy = animator.gameObject.GetComponent<EmemyController>();
+            _enemy = animator.gameObject.GetComponent<EnemyController>();
         _animator = animator;
         _enemy.BehaivourChanged += OnIdleEnter;
     }

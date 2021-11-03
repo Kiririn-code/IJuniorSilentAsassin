@@ -10,7 +10,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            var enemy = Instantiate(_enemyPrefab, _center.position,Quaternion.identity,transform).GetComponent<EmemyController>();
+            var enemy = Instantiate(_enemyPrefab, _center.position,Quaternion.identity,transform).GetComponent<EnemyController>();
             enemy.InitEnemy(_target, _center);
         }
     }
