@@ -56,13 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\DownloadAsset\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\DownloadAsset\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\DownloadAsset\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+    <Compile Include="Assets\DownloadAsset\NavMeshComponents\Scripts\NavMeshLink.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
+     <None Include="Assets\DownloadAsset\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

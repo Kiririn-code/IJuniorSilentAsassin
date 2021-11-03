@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-   [SerializeField] private int _speed = 5;
-   [SerializeField] private Rigidbody _body;
+    [SerializeField] private int _speed = 5;
 
     private float _health = 100;
 
@@ -17,8 +16,6 @@ public class Player : MonoBehaviour
             transform.Rotate(Vector3.up, 200 * Time.deltaTime);
         if (Input.GetKey(KeyCode.S))
             transform.Translate(Vector3.back * _speed * Time.deltaTime);
-
-        Debug.Log((float)_body.velocity.magnitude);
     }
 
     public void GetDamage(float damage)

@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EmemyController : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private NavMeshAgent _agent;
+    private Transform _target;
+    private NavMeshAgent _agent;
+    private Transform _generateCenter;
 
     private Dictionary<Type,IEnemyBehaivour> _enemyBehaivors;
     private IEnemyBehaivour _currentBehaivor;
 
     public event UnityAction BehaivourChanged;
 
-    private void Awake()
+    public void InitEnemy(Transform target, Transform center)
     {
+        _target = target;
+        _generateCenter = center;
+
+        _agent = GetComponent<NavMeshAgent>();
+
         InitDictionary();
         SetBehaivourByDefault();
+
     }
 
     private void Update()
@@ -35,8 +43,8 @@ public class EmemyController : MonoBehaviour
     {
         _enemyBehaivors = new Dictionary<Type, IEnemyBehaivour>
         {
-            [typeof(BehaivorAggresive)] = new BehaivorAggresive(_target,_agent,this),
-            [typeof(BehaivourIdle)] = new BehaivourIdle()
+            [typeof(BehaivorAggresive)] = new BehaivorAggresive(_target, _agent, this),
+            [typeof(BehaivourIdle)] = new BehaivourIdle(_agent, _generateCenter)
         };
     }
 
@@ -69,4 +77,5 @@ public class EmemyController : MonoBehaviour
 
     public Type GetBehaivourType() => _currentBehaivor.GetType();
     public float GetMagnitude() => _agent.velocity.magnitude;
+    public Transform GetTarget() => _target;
 }

@@ -57,21 +57,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Jammo-Character\Scripts\CharacterSkinController.cs" />
+    <Compile Include="Assets\DownloadAsset\Jammo-Character\Scripts\CharacterSkinController.cs" />
     <Compile Include="Assets\Script\Map\CellRenderer.cs" />
-    <Compile Include="Assets\Script\IEnemyBehaivour.cs" />
-    <Compile Include="Assets\Script\BehaivorAggresive.cs" />
-    <Compile Include="Assets\Jammo-Character\Scripts\MovementInput.cs" />
-    <Compile Include="Assets\Script\BehaivourIdle.cs" />
+    <Compile Include="Assets\Script\StateMachine\IEnemyBehaivour.cs" />
+    <Compile Include="Assets\Script\Ui\Menu.cs" />
+    <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Slide.cs" />
+    <Compile Include="Assets\Script\StateMachine\BehaivorAggresive.cs" />
+    <Compile Include="Assets\DownloadAsset\Jammo-Character\Scripts\MovementInput.cs" />
+    <Compile Include="Assets\Script\StateMachine\BehaivourIdle.cs" />
+    <Compile Include="Assets\Script\Animation\PlayerAnimation.cs" />
+    <Compile Include="Assets\Script\NavMeshSurvace.cs" />
+    <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Togglescript.cs" />
     <Compile Include="Assets\Script\ShowLine.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Map\Cell.cs" />
+    <Compile Include="Assets\Script\Ui\MainMenu.cs" />
     <Compile Include="Assets\Script\EmemyController.cs" />
-    <Compile Include="Assets\Script\AnimationBehaivour.cs" />
+    <Compile Include="Assets\Script\Animation\AnimationBehaivour.cs" />
     <Compile Include="Assets\Script\Map\CellGenerator.cs" />
-    <Compile Include="Assets\PlayerAnimation.cs" />
+    <Compile Include="Assets\Script\Game.cs" />
+    <Compile Include="Assets\Script\EnemyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

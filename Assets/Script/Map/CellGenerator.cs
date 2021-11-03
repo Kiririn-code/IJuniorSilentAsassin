@@ -21,6 +21,21 @@ public class CellGenerator
         RemoveWallWithBackTracking(_mazeMap);
 
         return _mazeMap;
+   }
+
+    public CellMaze[,] RefrashMap()
+    {
+        for (int x = 0; x < _mazeMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < _mazeMap.GetLength(1); y++)
+            {
+                _mazeMap[x, y].IsBottomWallWisible = true;
+                _mazeMap[x, y].IsLeftWallWisible = true;
+                _mazeMap[x, y].IsVisited = false;
+            }
+        }
+        RemoveWallWithBackTracking(_mazeMap);
+        return _mazeMap;
     }
 
     private void RemoveWallWithBackTracking(CellMaze[,] maze)

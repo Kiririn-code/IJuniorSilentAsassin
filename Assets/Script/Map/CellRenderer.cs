@@ -1,30 +1,72 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CellRenderer : MonoBehaviour
 {
     [SerializeField] private GameObject _cellPrafab;
+    [SerializeField] private NavMeshSurface _surface;
 
-    void Awake()
+    private CellGenerator _generator;
+    private CellMaze[,] _mazeMap;
+    private Coroutine _startUpdateNavMesh;
+
+    private void Start()
     {
-        CellGenerator generator = new CellGenerator();
+        _generator = new CellGenerator();
+        MazeRender();
+    }
 
-        CellMaze[,] mazeMap= generator.GenerateMaze();
+    public void RefreshMaze()
+    {
+        Cell[] cells = FindObjectsOfType<Cell>();
 
-        for (int x = 0; x < mazeMap.GetLength(0); x++)
+        foreach (var item in cells)
         {
-            for (int y = 0; y < mazeMap.GetLength(1); y++)
+            Destroy(item.gameObject);
+        }
+
+        _mazeMap = _generator.GenerateMaze();
+        DeleteWall();
+        StartNavMeshCoriutime();
+    }
+
+    private void MazeRender()
+    {
+        _mazeMap = _generator.GenerateMaze();
+        DeleteWall();
+        _surface.BuildNavMesh();
+    }
+
+    private void DeleteWall()
+    {
+        for (int x = 0; x < _mazeMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < _mazeMap.GetLength(1); y++)
             {
                 Cell cell = Instantiate(_cellPrafab, new Vector3(x, 0, y), Quaternion.identity, gameObject.transform).GetComponent<Cell>();
-
-                cell.BottomWall.SetActive(mazeMap[x, y].IsBottomWallWisible);
-                cell.LeftWall.SetActive(mazeMap[x, y].IsLeftWallWisible);
+                cell.BottomWall.SetActive(_mazeMap[x, y].IsBottomWallWisible);
+                cell.LeftWall.SetActive(_mazeMap[x, y].IsLeftWallWisible);
             }
         }
     }
 
-    private void Start()
+    private void StartNavMeshCoriutime()
     {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        if (_startUpdateNavMesh != null)
+            StopCoroutine(_startUpdateNavMesh);
+        _startUpdateNavMesh = StartCoroutine(UpdateNavMesh());
+    }
+
+    private IEnumerator UpdateNavMesh()
+    {
+        int delay = 2;
+        while (delay != 0)
+        {
+            _surface.UpdateNavMesh(_surface.navMeshData);
+            var time = new WaitForEndOfFrame();
+            yield return time;
+            delay--;
+        }
     }
 }

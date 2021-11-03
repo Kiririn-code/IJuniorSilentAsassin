@@ -1,18 +1,17 @@
-using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(EmemyController))]
 
 public class Enemy : MonoBehaviour
 {
-    private EmemyController _controller;
+    [Range(0,90)] [SerializeField] private float _angle = 90f;
+    [Range(0,10)] [SerializeField] private float _viewDistance = 10f;
 
-    [SerializeField] private Transform _target;
+    private EmemyController _controller;
+    private Transform _target;
 
     private float _damage = 10;
 
     private float _distanceBetweenObject = 1f;
-    private float _viewDistance = 10f;
-    private float _angle = 90f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +25,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _controller = GetComponent<EmemyController>();
+        _target = _controller.GetTarget();
     }
 
     private void Update()
