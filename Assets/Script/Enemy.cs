@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(EnemyController))]
 
 public class Enemy : MonoBehaviour
@@ -9,9 +12,16 @@ public class Enemy : MonoBehaviour
     private EnemyController _controller;
     private Transform _target;
 
+    private int _health = 100;
+    private int _reward = 10;
     private float _damage = 10;
+    private const float  _attackDelay = 2f;
 
     private float _distanceBetweenObject = 1f;
+
+    public event UnityAction<Enemy> Died;
+
+    public int GetRevard() => _reward;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -66,14 +76,28 @@ public class Enemy : MonoBehaviour
     {
         float attackCooldown =0;
 
-        if(attackCooldown <=3)
+        if(attackCooldown <= _attackDelay)
         {
             attackCooldown += Time.deltaTime;
         }
         else
         {
-            player.GetDamage(_damage);
+            player.ApplyDamage(_damage);
             attackCooldown = 0;
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        Died?.Invoke(this);
     }
 }

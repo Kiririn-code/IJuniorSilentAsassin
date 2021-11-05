@@ -8,5 +8,7 @@ public class PlayerAnimation : StateMachineBehaviour
                 animator.SetBool("IsWalk", true);
             else
                 animator.SetBool("IsWalk", false);
+        if (Input.GetKey(KeyCode.E))
+            animator.SetTrigger("Battle");
     }
 }
