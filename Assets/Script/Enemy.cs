@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,7 +14,6 @@ public class Enemy : MonoBehaviour
     private int _health = 100;
     private int _reward = 10;
     private float _damage = 10;
-    private const float  _attackDelay = 2f;
 
     private float _distanceBetweenObject = 1f;
 
@@ -27,8 +25,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            DoAttack(player);
-            Debug.Log("Hit");
+            player.ApplyDamage(_damage);
+            GetComponent<Animator>().SetTrigger("Attack");
         }
     }
 
@@ -72,21 +70,6 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    private void DoAttack(Player player)
-    {
-        float attackCooldown =0;
-
-        if(attackCooldown <= _attackDelay)
-        {
-            attackCooldown += Time.deltaTime;
-        }
-        else
-        {
-            player.ApplyDamage(_damage);
-            attackCooldown = 0;
-        }
-    }
-
     public void ApplyDamage(int damage)
     {
         _health -= damage;
@@ -99,5 +82,13 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         Died?.Invoke(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 left = transform.position + Quaternion.Euler(new Vector3(0, _angle / 2f, 0)) * (transform.forward * _viewDistance);
+        Vector3 right = transform.position + Quaternion.Euler(-new Vector3(0, _angle / 2f, 0)) * (transform.forward * _viewDistance);
+        Gizmos.DrawLine(transform.position, left);
+        Gizmos.DrawLine(transform.position, right);
     }
 }

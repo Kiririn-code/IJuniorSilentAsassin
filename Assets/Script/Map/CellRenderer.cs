@@ -26,7 +26,7 @@ public class CellRenderer : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        _mazeMap = _generator.GenerateMaze();
+        _mazeMap = _generator.RefrashMaze();
         DeleteWall();
         StartNavMeshCoriutime();
     }

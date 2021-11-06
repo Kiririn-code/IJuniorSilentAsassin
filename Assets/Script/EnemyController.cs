@@ -7,8 +7,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
-    private Transform _target;
     private NavMeshAgent _agent;
+    private Transform _target;
     private Transform _generateCenter;
 
     private Dictionary<Type,IEnemyBehaivour> _enemyBehaivors;
@@ -25,7 +25,6 @@ public class EnemyController : MonoBehaviour
 
         InitDictionary();
         SetBehaivourByDefault();
-
     }
 
     private void Update()
@@ -62,6 +61,7 @@ public class EnemyController : MonoBehaviour
     {
         return _enemyBehaivors[typeof(T)];
     }
+
     public void SetAggresiveBehaivour()
     {
         var behaivour = GetBehaivour<BehaivorAggresive>();

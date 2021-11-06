@@ -33,15 +33,6 @@ public class BehaivourIdle : IEnemyBehaivour
             if (RandomPoint(_point.transform.position, 20))
                 _agent.SetDestination(_randomPoint);
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Agent " + _agent.transform.position);
-            Debug.Log("random " + _randomPoint);
-            Debug.Log("Round Agent " + Mathf.Round(_agent.transform.position.x));
-            Debug.Log("Rount Random " + Mathf.Round(_randomPoint.x));
-            Debug.Log("Distance" + Vector3.Distance(_randomPoint, _agent.transform.position));
-        }
     }
 
     private bool RandomPoint(Vector3 center, float range)
@@ -56,8 +47,6 @@ public class BehaivourIdle : IEnemyBehaivour
                 return true;
             }
         }
-
-        //_randomPoint = _point.position;
         return false;
     }
 }

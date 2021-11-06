@@ -23,7 +23,7 @@ public class CellGenerator
         return _mazeMap;
    }
 
-    public CellMaze[,] RefrashMap()
+    public CellMaze[,] RefrashMaze()
     {
         for (int x = 0; x < _mazeMap.GetLength(0); x++)
         {

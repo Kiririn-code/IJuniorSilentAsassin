@@ -57,18 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\DownloadAsset\Jammo-Character\Scripts\CharacterSkinController.cs" />
     <Compile Include="Assets\Script\Map\CellRenderer.cs" />
     <Compile Include="Assets\Script\StateMachine\IEnemyBehaivour.cs" />
     <Compile Include="Assets\Script\Ui\Menu.cs" />
     <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Slide.cs" />
     <Compile Include="Assets\Script\StateMachine\BehaivorAggresive.cs" />
-    <Compile Include="Assets\DownloadAsset\Jammo-Character\Scripts\MovementInput.cs" />
     <Compile Include="Assets\Script\StateMachine\BehaivourIdle.cs" />
-    <Compile Include="Assets\Script\Animation\PlayerAnimation.cs" />
     <Compile Include="Assets\Script\NavMeshSurvace.cs" />
     <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Togglescript.cs" />
-    <Compile Include="Assets\Script\ShowLine.cs" />
     <Compile Include="Assets\Script\EnemyGenerator.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Map\Cell.cs" />
@@ -77,6 +73,7 @@
     <Compile Include="Assets\Script\Animation\AnimationBehaivour.cs" />
     <Compile Include="Assets\Script\Map\CellGenerator.cs" />
     <Compile Include="Assets\Script\Game.cs" />
+    <Compile Include="Assets\Script\Ui\PlayerUIInfo.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro.cginc" />

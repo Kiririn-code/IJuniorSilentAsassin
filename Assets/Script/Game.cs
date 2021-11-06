@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Game : MonoBehaviour
 {
@@ -11,10 +10,12 @@ public class Game : MonoBehaviour
     private void OnEnable()
     {
         _menu.OnRestartButtonClick += OnRestartButtonKlick;
+        _player.Died += _menu.Open;
     }
     private void OnDisable()
     {
         _menu.OnRestartButtonClick -= OnRestartButtonKlick;
+        _player.Died -= _menu.Open;
     }
 
     private void OnRestartButtonKlick()

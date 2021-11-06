@@ -25,7 +25,6 @@ public class EnemyGenerator : MonoBehaviour
             _gapBetweenSpawn = 0;
         }
         _gapBetweenSpawn += Time.deltaTime;
-
     }
 
     public void RestartSpawn()

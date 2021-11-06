@@ -64,10 +64,11 @@ public class BehaivorAggresive : IEnemyBehaivour
     private IEnumerator GrowInterest(float value)
     {
         var time = new WaitForEndOfFrame();
+        float growStep = 0.004f;
 
         while(_interest != value)
         {
-            _interest = Mathf.MoveTowards(_interest, value, 0.004f);
+            _interest = Mathf.MoveTowards(_interest, value, growStep);
             yield return time;
         }
     }
