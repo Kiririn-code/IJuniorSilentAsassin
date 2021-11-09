@@ -18,7 +18,7 @@ public class CellGenerator
             }
         }
 
-        RemoveWallWithBackTracking(_mazeMap);
+        RemoveWall(_mazeMap);
 
         return _mazeMap;
    }
@@ -34,11 +34,11 @@ public class CellGenerator
                 _mazeMap[x, y].IsVisited = false;
             }
         }
-        RemoveWallWithBackTracking(_mazeMap);
+        RemoveWall(_mazeMap);
         return _mazeMap;
     }
 
-    private void RemoveWallWithBackTracking(CellMaze[,] maze)
+    private void RemoveWall(CellMaze[,] maze)
     {
         CellMaze currentCell = maze[0, 0];
         currentCell.IsVisited = true;
@@ -49,13 +49,7 @@ public class CellGenerator
         {
             List<CellMaze> unvisitedNeighbors = new List<CellMaze>();
 
-            int x = currentCell.X;
-            int y = currentCell.Y;
-
-            if (x > 0 && maze[x - 1, y].IsVisited == false) unvisitedNeighbors.Add(maze[x - 1, y]);
-            if (y > 0 && maze[x, y - 1].IsVisited == false) unvisitedNeighbors.Add(maze[x, y - 1]);
-            if (x < _width - 2 && maze[x + 1, y].IsVisited == false) unvisitedNeighbors.Add(maze[x + 1, y]);
-            if (y < _height - 2 && maze[x, y + 1].IsVisited == false) unvisitedNeighbors.Add(maze[x, y + 1]);
+            CheckNeighbors(currentCell, maze, unvisitedNeighbors);
 
             if(unvisitedNeighbors.Count > 0)
             {
@@ -71,6 +65,17 @@ public class CellGenerator
             }
 
         } while (stackCellMazes.Count > 0);
+    }
+
+    private void CheckNeighbors(CellMaze currentCell, CellMaze[,] maze,List<CellMaze> unvisitedNeighbors)
+    {
+        int x = currentCell.X;
+        int y = currentCell.Y;
+
+        if (x > 0 && maze[x - 1, y].IsVisited == false) unvisitedNeighbors.Add(maze[x - 1, y]);
+        if (y > 0 && maze[x, y - 1].IsVisited == false) unvisitedNeighbors.Add(maze[x, y - 1]);
+        if (x < _width - 2 && maze[x + 1, y].IsVisited == false) unvisitedNeighbors.Add(maze[x + 1, y]);
+        if (y < _height - 2 && maze[x, y + 1].IsVisited == false) unvisitedNeighbors.Add(maze[x, y + 1]);
     }
 
     private void RemoveWall(CellMaze currentCell, CellMaze choosenCell)
@@ -90,11 +95,15 @@ public class CellGenerator
 
 public class CellMaze
 {
-    public int X;
-    public int Y;
+    private int _x;
+    private int _y;
+    private bool _isLeftWallWisible = true;
+    private bool _isBottomWallWisible = true;
+    private bool _isVisited = false;
 
-    public bool IsLeftWallWisible = true;
-    public bool IsBottomWallWisible = true;
-
-    public bool IsVisited = false;
+    public bool IsLeftWallWisible { get { return _isLeftWallWisible; } set { _isLeftWallWisible = value; } }
+    public bool IsBottomWallWisible { get { return _isBottomWallWisible; } set { _isBottomWallWisible = value; } }
+    public bool IsVisited { get { return _isVisited; } set { _isVisited = value; } }
+    public int X { get { return _x; } set { _x = value; } }
+    public int Y { get { return _y; } set { _y = value; } }
 }

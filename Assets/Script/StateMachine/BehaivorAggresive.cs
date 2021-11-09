@@ -24,12 +24,6 @@ public class BehaivorAggresive : IEnemyBehaivour
         _agent.ResetPath();
     }
 
-    [System.Obsolete]
-    public void Exit()
-    {
-        _agent.Stop();
-    }
-
     public void Update()
     {
        if ( _interest== 1)

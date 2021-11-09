@@ -20,12 +20,6 @@ public class BehaivourIdle : IEnemyBehaivour
         _agent.ResetPath();
     }
 
-    [System.Obsolete]
-    public void Exit()
-    {
-        _agent.Stop();
-    }
-
     public void Update()
     {
         if (Vector3.Distance(_randomPoint,_agent.transform.position)< 0.5f)

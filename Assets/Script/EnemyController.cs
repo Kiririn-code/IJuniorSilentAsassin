@@ -49,9 +49,6 @@ public class EnemyController : MonoBehaviour
 
     private void SetBehaivour(IEnemyBehaivour newBehaivour)
     {
-        if(_currentBehaivor != null)
-                _currentBehaivor.Exit();
-
         _currentBehaivor = newBehaivour;
 
         _currentBehaivor.Enter();

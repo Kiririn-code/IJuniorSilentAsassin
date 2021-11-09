@@ -45,8 +45,8 @@ public class CellRenderer : MonoBehaviour
             for (int y = 0; y < _mazeMap.GetLength(1); y++)
             {
                 Cell cell = Instantiate(_cellPrafab, new Vector3(x, 0, y), Quaternion.identity, gameObject.transform).GetComponent<Cell>();
-                cell.BottomWall.SetActive(_mazeMap[x, y].IsBottomWallWisible);
-                cell.LeftWall.SetActive(_mazeMap[x, y].IsLeftWallWisible);
+                cell.SetBottomWallActive(_mazeMap[x, y].IsBottomWallWisible);
+                cell.SetLeftWallActive(_mazeMap[x, y].IsLeftWallWisible);
             }
         }
     }
@@ -60,8 +60,8 @@ public class CellRenderer : MonoBehaviour
 
     private IEnumerator UpdateNavMesh()
     {
-        int delay = 2;
-        while (delay != 0)
+        int delay = 3;
+        for (int i = 0; i < delay; i++)
         {
             _surface.UpdateNavMesh(_surface.navMeshData);
             var time = new WaitForEndOfFrame();

@@ -1,7 +1,6 @@
 public interface IEnemyBehaivour
 {
-    public void Enter();
-    public void Exit();
-    public void Update();
+    void Enter();
+    void Update();
 
 }
