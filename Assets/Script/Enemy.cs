@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,8 +6,10 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    [Range(0,90)] [SerializeField] private float _angle = 90f;
-    [Range(0,10)] [SerializeField] private float _viewDistance = 10f;
+    [SerializeField] private GameObject _boom;
+    [SerializeField] private Animator _animator;
+    [Range(0,50)] [SerializeField] private float _angle = 90f;
+    [Range(0,5)] [SerializeField] private float _viewDistance = 10f;
 
     private EnemyController _controller;
     private Transform _target;
@@ -26,7 +29,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.ApplyDamage(_damage);
-            GetComponent<Animator>().SetTrigger("Attack");
+            _animator.SetTrigger("Attack");
         }
     }
 
@@ -80,8 +83,20 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        _controller.enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
+        _animator.SetTrigger("Die");
+        StartCoroutine(DestroyEnemyy());
         Died?.Invoke(this);
+    }
+
+    private IEnumerator DestroyEnemyy()
+    {
+        var time = new WaitForSeconds(2);
+        yield return time;
+        Instantiate(_boom, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

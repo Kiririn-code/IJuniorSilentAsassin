@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _mask;
     [SerializeField] private Animator _animator;
     
-    private float _attackRadius = 0.2f;
+    private float _attackRadius = 0.3f;
     private float _health;
     private int _score;
     private Vector3 _startPosition;
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Attack();
-            _animator.SetTrigger("Battle");
+            _animator.SetTrigger("Attack");
         }
 
     }
@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         Collider[] enemies = Physics.OverlapSphere(_attackPoint.position, _attackRadius, _mask);
-        Debug.Log(enemies.Length);
 
         foreach (var enemy in enemies)
         {
