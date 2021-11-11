@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     private void OnRestartButtonKlick()
     {
         _menu.Close();
-        _renderer.RefreshMaze();
+        _renderer.RebuildMaze();
         _generator.RestartSpawn();
         _player.RestartPlayer();
     }

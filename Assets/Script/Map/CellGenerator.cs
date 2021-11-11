@@ -6,34 +6,25 @@ public class CellGenerator
     private int _width = 10;
     private int _height = 10;
 
-    public CellMaze[,] GenerateMaze()
+    public CellMaze[,] GenerateMazeMap()
     {
-        _mazeMap = new CellMaze[_width,_height];
+        _mazeMap = new CellMaze[_width, _height];
 
         for (int x = 0; x < _mazeMap.GetLength(0); x++)
-        {
             for (int y = 0; y < _mazeMap.GetLength(1); y++)
-            {
-                _mazeMap[x, y] = new CellMaze { X = x, Y = y };
-            }
-        }
+                _mazeMap[x, y] = new CellMaze(x, y);
 
         RemoveWall(_mazeMap);
 
         return _mazeMap;
-   }
+    }
 
-    public CellMaze[,] RefrashMaze()
+    public CellMaze[,] RefrashMazeMap()
     {
         for (int x = 0; x < _mazeMap.GetLength(0); x++)
-        {
             for (int y = 0; y < _mazeMap.GetLength(1); y++)
-            {
-                _mazeMap[x, y].IsBottomWallWisible = true;
-                _mazeMap[x, y].IsLeftWallWisible = true;
-                _mazeMap[x, y].IsVisited = false;
-            }
-        }
+                _mazeMap[x, y].ResetCellMaze();
+
         RemoveWall(_mazeMap);
         return _mazeMap;
     }
@@ -49,7 +40,7 @@ public class CellGenerator
         {
             List<CellMaze> unvisitedNeighbors = new List<CellMaze>();
 
-            CheckNeighbors(currentCell, maze, unvisitedNeighbors);
+            FindUnvisitedCellNeighbors(currentCell, maze,unvisitedNeighbors);
 
             if(unvisitedNeighbors.Count > 0)
             {
@@ -67,7 +58,7 @@ public class CellGenerator
         } while (stackCellMazes.Count > 0);
     }
 
-    private void CheckNeighbors(CellMaze currentCell, CellMaze[,] maze,List<CellMaze> unvisitedNeighbors)
+    private void FindUnvisitedCellNeighbors(CellMaze currentCell, CellMaze[,] maze,List<CellMaze> unvisitedNeighbors)
     {
         int x = currentCell.X;
         int y = currentCell.Y;
@@ -95,15 +86,32 @@ public class CellGenerator
 
 public class CellMaze
 {
-    private int _x;
-    private int _y;
+    private bool _isVisited = false;
     private bool _isLeftWallWisible = true;
     private bool _isBottomWallWisible = true;
-    private bool _isVisited = false;
-
+    public int X { get; private set; }
+    public int Y { get; private set; }
+    public bool IsVisited { get { return _isVisited; } set { _isVisited = value; } }
     public bool IsLeftWallWisible { get { return _isLeftWallWisible; } set { _isLeftWallWisible = value; } }
     public bool IsBottomWallWisible { get { return _isBottomWallWisible; } set { _isBottomWallWisible = value; } }
-    public bool IsVisited { get { return _isVisited; } set { _isVisited = value; } }
-    public int X { get { return _x; } set { _x = value; } }
-    public int Y { get { return _y; } set { _y = value; } }
+
+    public CellMaze(int x, int y)
+    {
+        if (x >= 0 && y >= 0)
+        {
+            X = x;
+            Y = y; 
+        }
+        else
+        {
+            throw new System.ArgumentException();
+        }
+    }
+
+    public void ResetCellMaze()
+    {
+        IsVisited = false;
+        IsLeftWallWisible = true;
+        IsBottomWallWisible = true;
+    }
 }

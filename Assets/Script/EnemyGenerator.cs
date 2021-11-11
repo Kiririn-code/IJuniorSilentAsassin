@@ -6,11 +6,11 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Player _target;
     [SerializeField] private Transform _center;
+    [SerializeField]private int _maxEnemiesOnMap = 3;
 
     private List<Enemy> _enemies;
     private float _gapBetweenSpawn;
     private const float _spawnDelay = 3f;
-    private const int _maxEnemiesOnMap = 3;
 
     private void Start()
     {
@@ -52,7 +52,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private void OnEnemyDyind(Enemy enemy)
     {
-        _target.AddScore(enemy.GetRevard());
+        _target.AddScore(enemy.Reward);
         _enemies.Remove(enemy);
         enemy.Died -= OnEnemyDyind;
     }

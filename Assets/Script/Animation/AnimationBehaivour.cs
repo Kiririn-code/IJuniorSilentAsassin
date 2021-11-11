@@ -6,6 +6,9 @@ public class AnimationBehaivour : StateMachineBehaviour
     private EnemyController _enemy;
     private Animator _animator;
 
+    private const string _speed = "Speed";
+    private const string _idle = "Idle";
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(_enemy == null)
@@ -21,12 +24,12 @@ public class AnimationBehaivour : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (_enemy != null)
-            animator.SetFloat("Speed", _enemy.GetMagnitude());
+            animator.SetFloat(_speed, _enemy.GetMagnitude());
     }
 
     private void OnIdleEnter()
     {
-        _animator.SetTrigger("Idle");
+        _animator.SetTrigger(_idle);
     }
 }
 

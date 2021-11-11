@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class CellRenderer : MonoBehaviour
 {
-    [SerializeField] private GameObject _cellPrafab;
+    [SerializeField] private Cell _cellPrafab;
     [SerializeField] private NavMeshSurface _surface;
 
     private CellGenerator _generator;
@@ -14,10 +14,10 @@ public class CellRenderer : MonoBehaviour
     private void Start()
     {
         _generator = new CellGenerator();
-        MazeRender();
+        GenerateMaze();
     }
 
-    public void RefreshMaze()
+    public void RebuildMaze()
     {
         Cell[] cells = FindObjectsOfType<Cell>();
 
@@ -26,32 +26,32 @@ public class CellRenderer : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        _mazeMap = _generator.RefrashMaze();
-        DeleteWall();
-        StartNavMeshCoriutime();
+        _mazeMap = _generator.RefrashMazeMap();
+        RenderMaze();
+        StartNavMeshDelayCoriutime();
     }
 
-    private void MazeRender()
+    private void GenerateMaze()
     {
-        _mazeMap = _generator.GenerateMaze();
-        DeleteWall();
+        _mazeMap = _generator.GenerateMazeMap();
+        RenderMaze();
         _surface.BuildNavMesh();
     }
 
-    private void DeleteWall()
+    private void RenderMaze()
     {
         for (int x = 0; x < _mazeMap.GetLength(0); x++)
         {
             for (int y = 0; y < _mazeMap.GetLength(1); y++)
             {
-                Cell cell = Instantiate(_cellPrafab, new Vector3(x, 0, y), Quaternion.identity, gameObject.transform).GetComponent<Cell>();
+                Cell cell = Instantiate(_cellPrafab, new Vector3(x, 0, y), Quaternion.identity, gameObject.transform);
                 cell.SetBottomWallActive(_mazeMap[x, y].IsBottomWallWisible);
                 cell.SetLeftWallActive(_mazeMap[x, y].IsLeftWallWisible);
             }
         }
     }
 
-    private void StartNavMeshCoriutime()
+    private void StartNavMeshDelayCoriutime()
     {
         if (_startUpdateNavMesh != null)
             StopCoroutine(_startUpdateNavMesh);

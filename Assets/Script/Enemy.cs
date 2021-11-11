@@ -6,23 +6,26 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    [Range(0, 50)] [SerializeField] private float _angle = 90f;
+    [Range(0, 5)] [SerializeField] private float _viewDistance = 10f;
+
     [SerializeField] private GameObject _boom;
     [SerializeField] private Animator _animator;
-    [Range(0,50)] [SerializeField] private float _angle = 90f;
-    [Range(0,5)] [SerializeField] private float _viewDistance = 10f;
 
-    private EnemyController _controller;
+    [SerializeField] private int _reward = 10;
+    [SerializeField] private int _health = 100;
+    [SerializeField] private float _damage = 10;
+
     private Transform _target;
-
-    private int _health = 100;
-    private int _reward = 10;
-    private float _damage = 10;
-
+    private EnemyController _controller;
     private float _distanceBetweenObject = 1f;
 
     public event UnityAction<Enemy> Died;
-
-    public int GetRevard() => _reward;
+    public int Reward 
+    {
+        get { return _reward; } 
+        private set { _reward = value; } 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -87,11 +90,11 @@ public class Enemy : MonoBehaviour
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<SphereCollider>().enabled = false;
         _animator.SetTrigger("Die");
-        StartCoroutine(DestroyEnemyy());
+        StartCoroutine(DestroyEnemy());
         Died?.Invoke(this);
     }
 
-    private IEnumerator DestroyEnemyy()
+    private IEnumerator DestroyEnemy()
     {
         var time = new WaitForSeconds(2);
         yield return time;

@@ -8,13 +8,13 @@ public class BehaivorAggresive : IEnemyBehaivour
     private float _interest;
     private NavMeshAgent _agent;
     private Coroutine _currentInterest;
-    private MonoBehaviour _monoBehaviour;
+    private MonoBehaviour _startCoroutineHolder;
 
-   public BehaivorAggresive(Transform target, NavMeshAgent agent,MonoBehaviour monoBehaviour)
+   public BehaivorAggresive(Transform target, NavMeshAgent agent,MonoBehaviour coroutineHolder)
     {
         _target = target;
         _agent = agent;
-        _monoBehaviour = monoBehaviour;
+        _startCoroutineHolder = coroutineHolder;
     }
 
     public void Enter()
@@ -50,9 +50,9 @@ public class BehaivorAggresive : IEnemyBehaivour
     private void StartGrow(float side)
     {
         if (_currentInterest != null)
-            _monoBehaviour.StopCoroutine(_currentInterest);
+            _startCoroutineHolder.StopCoroutine(_currentInterest);
 
-        _currentInterest = _monoBehaviour.StartCoroutine(GrowInterest(side));
+        _currentInterest = _startCoroutineHolder.StartCoroutine(GrowInterest(side));
     }
 
     private IEnumerator GrowInterest(float value)

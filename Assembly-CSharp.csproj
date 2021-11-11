@@ -54,7 +54,6 @@
      <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Slide.cs" />
      <Compile Include="Assets\Script\StateMachine\BehaivorAggresive.cs" />
      <Compile Include="Assets\Script\StateMachine\BehaivourIdle.cs" />
-     <Compile Include="Assets\Script\Ui\PlayerUIInfo.cs" />
      <Compile Include="Assets\Script\NavMeshSurvace.cs" />
      <Compile Include="Assets\DownloadAsset\Free UI build package\Script\Togglescript.cs" />
      <Compile Include="Assets\Script\EnemyGenerator.cs" />
@@ -65,6 +64,7 @@
      <Compile Include="Assets\Script\Animation\AnimationBehaivour.cs" />
      <Compile Include="Assets\Script\Map\CellGenerator.cs" />
      <Compile Include="Assets\Script\Game.cs" />
+     <Compile Include="Assets\Script\Ui\PlayerView.cs" />
      <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\DownloadAsset\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

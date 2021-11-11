@@ -24,12 +24,12 @@ public class BehaivourIdle : IEnemyBehaivour
     {
         if (Vector3.Distance(_randomPoint,_agent.transform.position)< 0.5f)
         {
-            if (RandomPoint(_point.transform.position, 20))
+            if (TryGetARandomPointOnTheMap(_point.transform.position, 20))
                 _agent.SetDestination(_randomPoint);
         }
     }
 
-    private bool RandomPoint(Vector3 center, float range)
+    private bool TryGetARandomPointOnTheMap(Vector3 center, float range)
     {
        Vector3 randomPoint = center + Random.insideUnitSphere * range;
        NavMeshHit hit;
