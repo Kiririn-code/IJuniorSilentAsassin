@@ -97,15 +97,10 @@ public class CellMaze
 
     public CellMaze(int x, int y)
     {
-        if (x >= 0 && y >= 0)
-        {
-            X = x;
-            Y = y; 
-        }
-        else
-        {
+        if (x < 0 || y < 0)
             throw new System.ArgumentException();
-        }
+        X = x;
+        Y = y;
     }
 
     public void ResetCellMaze()

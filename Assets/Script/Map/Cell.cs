@@ -4,14 +4,25 @@ public class Cell : MonoBehaviour
 {
     [SerializeField] private GameObject _leftWall;
     [SerializeField] private GameObject _bottomWall;
-
-    public void SetLeftWallActive(bool value)
+     
+    public void ActiveLeftWall()
     {
-        _leftWall.SetActive(value);
+        _leftWall.SetActive(true);
     }
 
-    public void SetBottomWallActive(bool value)
+    public void DeactiveLeftWall()
     {
-        _bottomWall.SetActive(value);
+        _leftWall.SetActive(false);
     }
+
+    public void ActiveBottomWall()
+    {
+        _bottomWall.SetActive(true);
+    }
+
+    public void DeactiveBottomWall()
+    {
+        _bottomWall.SetActive(false);
+    }
+
 }

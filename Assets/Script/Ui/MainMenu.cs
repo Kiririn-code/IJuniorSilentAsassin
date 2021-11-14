@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class MainMenu : Menu
 {
-    public event UnityAction OnRestartButtonClick;
+    public event UnityAction RestartButtonClick;
 
     public override void Close()
     {
@@ -14,7 +14,7 @@ public class MainMenu : Menu
 
     public override void OnButtonClick()
     {
-        OnRestartButtonClick?.Invoke();
+        RestartButtonClick?.Invoke();
     }
 
     public override void Open()

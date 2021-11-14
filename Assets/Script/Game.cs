@@ -9,12 +9,12 @@ public class Game : MonoBehaviour
 
     private void OnEnable()
     {
-        _menu.OnRestartButtonClick += OnRestartButtonKlick;
+        _menu.RestartButtonClick += OnRestartButtonKlick;
         _player.Died += _menu.Open;
     }
     private void OnDisable()
     {
-        _menu.OnRestartButtonClick -= OnRestartButtonKlick;
+        _menu.RestartButtonClick -= OnRestartButtonKlick;
         _player.Died -= _menu.Open;
     }
 

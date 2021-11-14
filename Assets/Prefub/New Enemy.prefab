@@ -898,6 +898,7 @@ GameObject:
   - component: {fileID: 9037215848065870539}
   - component: {fileID: 8639414675642225296}
   - component: {fileID: 1675724098132549004}
+  - component: {fileID: 5842396878432753359}
   - component: {fileID: 546686725348740574}
   - component: {fileID: 4501391027949203956}
   - component: {fileID: 6264478577582799533}
@@ -977,6 +978,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341145cbe0cc6b24d95e1d4bfd695f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5842396878432753359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952791504646880713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174e199d5af8a50468b681e424db7f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _angle: 35
+  _viewDistance: 3
 --- !u!114 &546686725348740574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,11 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134998980f5c9884b8867e60d2a241f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 50
-  _viewDistance: 4
   _boom: {fileID: 2469186560208970410, guid: 221888688e9608c4bbdef62bc0ef3dd5, type: 3}
-  _animator: {fileID: 9037215848065870539}
-  _reward: 10
   _health: 100
   _damage: 10
 --- !u!135 &4501391027949203956
