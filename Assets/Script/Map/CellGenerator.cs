@@ -32,7 +32,7 @@ public class CellGenerator
     private void RemoveWall(CellMaze[,] maze)
     {
         CellMaze currentCell = maze[0, 0];
-        currentCell.IsVisited = true;
+        currentCell.SetVisitedFlagTrue();
 
         Stack<CellMaze> stackCellMazes = new Stack<CellMaze>();
 
@@ -46,7 +46,7 @@ public class CellGenerator
             {
                 CellMaze choosenCell = unvisitedNeighbors[UnityEngine.Random.Range(0, unvisitedNeighbors.Count)];
                 RemoveWall(currentCell, choosenCell);
-                choosenCell.IsVisited = true;
+                choosenCell.SetVisitedFlagTrue();
                 stackCellMazes.Push(choosenCell);
                 currentCell = choosenCell;
             }
@@ -73,27 +73,24 @@ public class CellGenerator
     {
         if(currentCell.X == choosenCell.X)
         {
-            if (currentCell.Y > choosenCell.Y) currentCell.IsBottomWallWisible = false;
-            else choosenCell.IsBottomWallWisible = false;
+            if (currentCell.Y > choosenCell.Y) currentCell.SetBottomWallFlagFalse();
+            else choosenCell.SetBottomWallFlagFalse();
         }
         else
         {
-            if (currentCell.X > choosenCell.X) currentCell.IsLeftWallWisible = false;
-            else choosenCell.IsLeftWallWisible = false;
+            if (currentCell.X > choosenCell.X) currentCell.SetLeftWallFlagFalse();
+            else choosenCell.SetLeftWallFlagFalse();
         }
     }
 }
 
 public class CellMaze
 {
-    private bool _isVisited = false;
-    private bool _isLeftWallWisible = true;
-    private bool _isBottomWallWisible = true;
     public int X { get; private set; }
     public int Y { get; private set; }
-    public bool IsVisited { get { return _isVisited; } set { _isVisited = value; } }
-    public bool IsLeftWallWisible { get { return _isLeftWallWisible; } set { _isLeftWallWisible = value; } }
-    public bool IsBottomWallWisible { get { return _isBottomWallWisible; } set { _isBottomWallWisible = value; } }
+    public bool IsVisited { get; private set; }
+    public bool IsLeftWallWisible { get; private set; }
+    public bool IsBottomWallWisible { get; private set; }
 
     public CellMaze(int x, int y)
     {
@@ -101,6 +98,23 @@ public class CellMaze
             throw new System.ArgumentException();
         X = x;
         Y = y;
+
+        ResetCellMaze();
+    }
+
+    public void SetLeftWallFlagFalse()
+    {
+        IsLeftWallWisible = false;
+    }
+
+    public void SetBottomWallFlagFalse()
+    {
+        IsBottomWallWisible = false;
+    }
+
+    public void SetVisitedFlagTrue()
+    {
+        IsVisited = true;
     }
 
     public void ResetCellMaze()

@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
     private int _score;
     private Vector3 _startPosition;
 
-    private const string _walk = "IsWalk";
-    private const string _attack = "Attack";
-    private const string _hit = "GetHit";
+    private const string Walk = "IsWalk";
+    private const string Attack = "Attack";
+    private const string Hit = "GetHit";
 
     public event UnityAction<float> HealthChanged;
     public event UnityAction<int> ScoreChahged;
@@ -35,11 +35,11 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-            _animator.SetBool(_walk,true);
+            _animator.SetBool(Walk,true);
         }
         else
         {
-            _animator.SetBool(_walk, false);
+            _animator.SetBool(Walk, false);
         }
         if (Input.GetKey(KeyCode.A))
             transform.Rotate(-Vector3.up, 200 * Time.deltaTime);
@@ -49,13 +49,13 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.back * _speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Attack();
-            _animator.SetTrigger(_attack);
+            Assault();
+            _animator.SetTrigger(Attack);
         }
 
     }
 
-    private void Attack()
+    private void Assault()
     {
         Collider[] enemies = Physics.OverlapSphere(_attackPoint.position, _attackRadius, _mask);
 
@@ -67,14 +67,14 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(float damage)
     {
-        _animator.SetTrigger(_hit);
+        _animator.SetTrigger(Hit);
         _health -= damage;
         HealthChanged?.Invoke(_health);
         if (_health <= 0)
-         Die();
+         Death();
     }
 
-    private void Die()
+    private void Death()
     {
         Died?.Invoke();
     }
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         _score = 0;
         _health = 100;
         transform.position = _startPosition;
-        ScoreChahged(_score);
-        HealthChanged(_health);
+        ScoreChahged.Invoke(_score);
+        HealthChanged.Invoke(_health);
     }
 }

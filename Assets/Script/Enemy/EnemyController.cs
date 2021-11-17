@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         _enemyBehaivors = new Dictionary<Type, IEnemyBehaivour>
         {
-            [typeof(BehaivorAggresive)] = new BehaivorAggresive(_target, _agent, this),
+            [typeof(BehaivorAggresive)] = new BehaivorAggresive(_target, _agent),
             [typeof(BehaivourIdle)] = new BehaivourIdle(_agent, _generateCenter)
         };
     }

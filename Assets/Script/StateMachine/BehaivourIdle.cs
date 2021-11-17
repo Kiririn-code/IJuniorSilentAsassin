@@ -6,6 +6,8 @@ public class BehaivourIdle : IEnemyBehaivour
     private Transform _point;
     private Vector3 _randomPoint;
     private NavMeshAgent _agent;
+    private float _distanceToRandomPoint = 0.5f;
+    private float _creationPointRadius = 20;
 
     public BehaivourIdle(NavMeshAgent agent,Transform point)
     {
@@ -22,9 +24,9 @@ public class BehaivourIdle : IEnemyBehaivour
 
     public void Update()
     {
-        if (Vector3.Distance(_randomPoint,_agent.transform.position)< 0.5f)
+        if (Vector3.Distance(_randomPoint,_agent.transform.position)< _distanceToRandomPoint)
         {
-            if (TryGetARandomPointOnTheMap(_point.transform.position, 20))
+            if (TryGetARandomPointOnTheMap(_point.transform.position, _creationPointRadius))
                 _agent.SetDestination(_randomPoint);
         }
     }

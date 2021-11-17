@@ -990,8 +990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174e199d5af8a50468b681e424db7f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 35
-  _viewDistance: 3
+  _angle: 60
+  _viewDistance: 6
 --- !u!114 &546686725348740574
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,10 +16,10 @@ public class Enemy : MonoBehaviour
     private PrecenceInspector _precenceView;
     private Transform _target;
     private EnemyController _controller;
-    private float _distanceBetweenObject = 1f;
+    private float _distanceBetweenObject = 2f;
 
-    private const string _attack = "Attack";
-    private const string _die = "Die";
+    private const string Attack = "Attack";
+    private const string Die = "Die";
 
     public int Reward { get; private set; } = 10;
     public event UnityAction<Enemy> Died;
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.ApplyDamage(_damage);
-            _animator.SetTrigger(_attack);
+            _animator.SetTrigger(Attack);
         }
     }
 
@@ -66,15 +66,15 @@ public class Enemy : MonoBehaviour
         _health -= damage;
 
         if (_health <= 0)
-            Die();
+            Death();
     }
 
-    private void Die()
+    private void Death()
     {
         _controller.enabled = false;
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<SphereCollider>().enabled = false;
-        _animator.SetTrigger(_die);
+        _animator.SetTrigger(Die);
         StartCoroutine(DestroyEnemy());
         Died?.Invoke(this);
     }

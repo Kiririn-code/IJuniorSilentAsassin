@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System;
 
 public class PlayerView : MonoBehaviour
 {
@@ -15,13 +16,21 @@ public class PlayerView : MonoBehaviour
     {
         _player.HealthChanged += OnHealthChanged;
         _player.ScoreChahged += OnScoreChanged;
+        _player.Died += OnViewRestart;
     }
-
     private void OnDisable()
     {
         _player.HealthChanged -= OnHealthChanged;
         _player.ScoreChahged -= OnScoreChanged;
     }
+
+    private void OnViewRestart()
+    {
+        StopCoroutine(_valueChangedCoroutine);
+        _healthSlider.value = _healthSlider.maxValue;
+        _textScore.text = 0.ToString();
+    }
+
 
     private void OnScoreChanged(int score)
     {
@@ -40,9 +49,10 @@ public class PlayerView : MonoBehaviour
     private IEnumerator ChangeHealth(float value)
     {
         var time = new WaitForEndOfFrame();
+        float delay = 0.1f;
         while(_healthSlider.value != value)
         {
-            _healthSlider.value = Mathf.MoveTowards(_healthSlider.value, value, 0.05f);
+            _healthSlider.value = Mathf.MoveTowards(_healthSlider.value, value, delay);
             yield return time;
         }
     }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PrecenceInspector : MonoBehaviour
 {
-    [Range(0, 50)] [SerializeField] private float _angle = 90f;
-    [Range(0, 5)] [SerializeField] private float _viewDistance = 10f;
+    [Range(0, 60)] [SerializeField] private float _angle;
+    [Range(0, 6)] [SerializeField] private float _viewDistance;
     private Transform _target;
 
     public void SetTarget(Transform target)
@@ -18,7 +18,7 @@ public class PrecenceInspector : MonoBehaviour
 
         if (Physics.Raycast(transform.position, _target.position - transform.position, out hit, _viewDistance))
         {
-            if (realAngile < _angle / 2f && Vector3.Distance(transform.position, _target.position) <= _viewDistance && hit.transform == _target.transform)
+            if (realAngile < _angle  && Vector3.Distance(transform.position, _target.position) <= _viewDistance && hit.transform == _target.transform)
             {
                 return true;
             }
