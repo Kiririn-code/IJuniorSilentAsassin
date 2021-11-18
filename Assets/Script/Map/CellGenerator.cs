@@ -23,7 +23,7 @@ public class CellGenerator
     {
         for (int x = 0; x < _mazeMap.GetLength(0); x++)
             for (int y = 0; y < _mazeMap.GetLength(1); y++)
-                _mazeMap[x, y].ResetCellMaze();
+                _mazeMap[x, y].Reset();
 
         RemoveWall(_mazeMap);
         return _mazeMap;
@@ -32,7 +32,7 @@ public class CellGenerator
     private void RemoveWall(CellMaze[,] maze)
     {
         CellMaze currentCell = maze[0, 0];
-        currentCell.SetVisitedFlagTrue();
+        currentCell.Visit();
 
         Stack<CellMaze> stackCellMazes = new Stack<CellMaze>();
 
@@ -46,7 +46,7 @@ public class CellGenerator
             {
                 CellMaze choosenCell = unvisitedNeighbors[UnityEngine.Random.Range(0, unvisitedNeighbors.Count)];
                 RemoveWall(currentCell, choosenCell);
-                choosenCell.SetVisitedFlagTrue();
+                choosenCell.Visit();
                 stackCellMazes.Push(choosenCell);
                 currentCell = choosenCell;
             }
@@ -73,13 +73,13 @@ public class CellGenerator
     {
         if(currentCell.X == choosenCell.X)
         {
-            if (currentCell.Y > choosenCell.Y) currentCell.SetBottomWallFlagFalse();
-            else choosenCell.SetBottomWallFlagFalse();
+            if (currentCell.Y > choosenCell.Y) currentCell.RemoveBottomWall();
+            else choosenCell.RemoveBottomWall();
         }
         else
         {
-            if (currentCell.X > choosenCell.X) currentCell.SetLeftWallFlagFalse();
-            else choosenCell.SetLeftWallFlagFalse();
+            if (currentCell.X > choosenCell.X) currentCell.RemoveLeftWall();
+            else choosenCell.RemoveLeftWall();
         }
     }
 }
@@ -99,25 +99,25 @@ public class CellMaze
         X = x;
         Y = y;
 
-        ResetCellMaze();
+        Reset();
     }
 
-    public void SetLeftWallFlagFalse()
+    public void RemoveLeftWall()
     {
         IsLeftWallWisible = false;
     }
 
-    public void SetBottomWallFlagFalse()
+    public void RemoveBottomWall()
     {
         IsBottomWallWisible = false;
     }
 
-    public void SetVisitedFlagTrue()
+    public void Visit()
     {
         IsVisited = true;
     }
 
-    public void ResetCellMaze()
+    public void Reset()
     {
         IsVisited = false;
         IsLeftWallWisible = true;

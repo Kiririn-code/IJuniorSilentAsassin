@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Threading.Tasks;
+using System.Threading;
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class BehaivorAggresive : IEnemyBehaivour
 {
@@ -38,6 +41,5 @@ public class BehaivorAggresive : IEnemyBehaivour
                 rotationSpeed * Time.deltaTime
             );
     }
-    
 }
 
